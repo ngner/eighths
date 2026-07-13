@@ -114,3 +114,12 @@ clusterGroup:
     volumes:
       - name: kustomize
         emptyDir: {}
+  extraObjects:
+    hub-gitops-enable-alpha-plugins:
+      apiVersion: argoproj.io/v1beta1
+      kind: ArgoCD
+      metadata:
+        name: hub-gitops
+        namespace: eighths-hub
+      spec:
+        kustomizeBuildOptions: --enable-alpha-plugins
