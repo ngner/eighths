@@ -1,7 +1,13 @@
 clusterGroup:
   name: hub
   namespaces:
-    - eighths
+    eighths: null
+    open-cluster-management: null
+    vault: null
+    external-secrets: null
+    tenancies: null
+    policies: null
+    tenant-form-acm-gui: null
   subscriptions:
     acm:
       name: advanced-cluster-management

@@ -3,7 +3,7 @@ global:
   secretLoader:
     disabled: true
 main:
-  clusterGroupName: prod
+  clusterGroupName: hub
   multiSourceConfig:
     enabled: true
     clusterGroupChartVersion: 0.9.*
