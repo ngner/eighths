@@ -1,0 +1,87 @@
+clusterGroup:
+  name: hub
+  namespaces:
+    - eighths
+  subscriptions:
+    acm:
+      name: advanced-cluster-management
+      namespace: open-cluster-management
+      channel: release-2.17
+    eso:
+      name: openshift-external-secrets-operator
+      namespace: external-secrets-operator
+      channel: stable-v1
+  argoProjects:
+  - tenancy-policy
+  applications:
+    tenancyBase:
+      name: tenancy-base
+      namespace: tenancies
+      argoProject: tenancy-policy
+      repoURL: https://github.com/ngner/tenancy-by-acm-policy.git
+      targetRevision: master
+      path: tenancies
+      kustomize: true
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+      annotations:
+        argocd.argoproj.io/sync-wave: '10'
+    tenancyPlacements:
+      name: tenancy-placements
+      namespace: tenancies
+      argoProject: tenancy-policy
+      repoURL: https://github.com/ngner/tenancy-by-acm-policy.git
+      targetRevision: master
+      path: placements
+      kustomize: true
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+      annotations:
+        argocd.argoproj.io/sync-wave: '20'
+    tenancyAccessControl:
+      name: tenancy-access-control
+      namespace: policies
+      argoProject: tenancy-policy
+      repoURL: https://github.com/ngner/tenancy-by-acm-policy.git
+      targetRevision: master
+      path: policygen/AC-Access-Control
+      kustomize: true
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false
+      annotations:
+        argocd.argoproj.io/sync-wave: '30'
+    tenancyConfigurationManagement:
+      name: tenancy-configuration-management
+      namespace: policies
+      argoProject: tenancy-policy
+      repoURL: https://github.com/ngner/tenancy-by-acm-policy.git
+      targetRevision: master
+      path: policygen/CM-Configuration-Management
+      kustomize: true
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+      annotations:
+        argocd.argoproj.io/sync-wave: '40'
+    tenancySystemAndCommsProtection:
+      name: tenancy-system-and-communications-protection
+      namespace: policies
+      argoProject: tenancy-policy
+      repoURL: https://github.com/ngner/tenancy-by-acm-policy.git
+      targetRevision: master
+      path: policygen/SC-System-and-Communications-Protection
+      kustomize: true
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+      annotations:
+        argocd.argoproj.io/sync-wave: '50'
+
