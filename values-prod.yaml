@@ -1,6 +1,0 @@
-clusterGroup:
-  name: prod
-  namespaces:
-    - eighths
-  subscriptions: {}
-  applications: {}

@@ -90,4 +90,16 @@ clusterGroup:
           selfHeal: true
       annotations:
         argocd.argoproj.io/sync-wave: '50'
-
+  argoCD:
+    configManagementPlugins:
+    - name: policy-generator-install
+      image: registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel9:v2.17
+      imagePullPolicy: Always
+      command:
+          - /bin/bash
+      pluginArgs:
+        - -c
+        - >-
+          mkdir -p /.config/kustomize/plugin/policy.open-cluster-management.io/v1/policygenerator &&
+          cp /policy-generator/PolicyGenerator-not-fips-compliant
+          /.config/kustomize/plugin/policy.open-cluster-management.io/v1/policygenerator/PolicyGenerator
