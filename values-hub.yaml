@@ -120,6 +120,6 @@ clusterGroup:
       kind: ArgoCD
       metadata:
         name: hub-gitops
-        namespace: hub-gitops
+        namespace: tenant-pattern-hub
       spec:
         kustomizeBuildOptions: --enable-alpha-plugins
