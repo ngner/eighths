@@ -120,6 +120,6 @@ clusterGroup:
       kind: ArgoCD
       metadata:
         name: hub-gitops
-        namespace: eighths-hub
+        namespace: hub-gitops
       spec:
         kustomizeBuildOptions: --enable-alpha-plugins
