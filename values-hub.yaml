@@ -4,7 +4,7 @@ clusterGroup:
     eighths: null
     open-cluster-management: null
     vault: null
-    external-secrets: null
+    external-secrets-operator: null
     tenancies: null
     policies: null
     tenant-form-acm-gui: null
